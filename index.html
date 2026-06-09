@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal OS</title>
+    <link rel="stylesheet" href="terminal.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+
+    <!-- Ecran de boot -->
+    <div id="boot-screen">
+        <div id="boot-text"></div>
+    </div>
+
+    <!-- Ecran principal -->
+    <div id="main-screen" class="hidden">
+
+        <!-- Barre du haut -->
+        <div id="top-bar">
+            <span id="os-name">GHOST OS v1.0</span>
+            <span id="top-bar-right">
+                <span id="clock">00:00:00</span>
+                <span id="status">● CONNECTÉ</span>
+            </span>
+        </div>
+
+        <!-- Terminal -->
+        <div id="terminal-wrapper">
+
+            <div id="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span id="terminal-title">root@ghost:~</span>
+            </div>
+
+            <div id="terminal-body">
+
+                <!-- Historique des outputs -->
+                <div id="output"></div>
+
+                <!-- Ligne de saisie -->
+                <div id="input-line">
+                    <span id="prompt">root@ghost:~$</span>
+                    <input 
+                        type="text" 
+                        id="command-input" 
+                        autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        autofocus
+                    />
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Barre du bas -->
+        <div id="bottom-bar">
+            <span id="current-path">PATH: /root</span>
+            <span id="level-info">NIVEAU: 1</span>
+            <span id="hint-bar">ASTUCE: tape "help" pour commencer</span>
+        </div>
+
+    </div>
+
+    <!-- Scripts (ordre de chargement important) -->
+    <script src="state.js"></script>
+    <script src="history.js"></script>
+    <script src="filesystem.js"></script>
+    <script src="world.js"></script>
+    <script src="commands.js"></script>
+    <script src="story.js"></script>
+    <script src="parser.js"></script>
+    <script src="terminal.js"></script>
+
+</body>
+</html>
+
