@@ -1,0 +1,26 @@
+/terminal-game
+│
+├── index.html
+├── /css
+│   ├── terminal.css
+│   └── animations.css
+├── /js
+│   ├── core/
+│   │   ├── terminal.js      # moteur du terminal
+│   │   ├── parser.js        # analyse les commandes
+│   │   └── history.js       # historique commandes
+│   │
+│   ├── game/
+│   │   ├── commands.js      # liste des commandes dispo
+│   │   ├── story.js         # narration / progression
+│   │   ├── state.js         # état du jeu
+│   │   └── world.js         # carte du monde & navigation
+│   │
+│   ├── main.js              # point d'entrée alternatif (Game)
+│   │
+│   └── data/
+│       └── filesystem.js    # faux système de fichiers
+│
+└── /assets
+    └── sounds/              # sons optionnels
+

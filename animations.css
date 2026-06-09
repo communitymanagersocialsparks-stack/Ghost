@@ -1,0 +1,339 @@
+/* =============================
+   ANIMATIONS.CSS
+   Toutes les animations du jeu
+============================= */
+
+/* =============================
+   KEYFRAMES
+============================= */
+
+/* Clignotement curseur */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* Pulsation douce */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+/* Pulsation lueur verte */
+@keyframes glow-pulse {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 16px rgba(0, 255, 65, 1),
+                     0 0 30px rgba(0, 255, 65, 0.6);
+    }
+}
+
+/* Pulsation lueur rouge */
+@keyframes glow-pulse-red {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(255, 59, 59, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 16px rgba(255, 59, 59, 1),
+                     0 0 30px rgba(255, 59, 59, 0.6);
+    }
+}
+
+/* Pulsation lueur jaune */
+@keyframes glow-pulse-yellow {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(255, 208, 0, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 16px rgba(255, 208, 0, 1),
+                     0 0 30px rgba(255, 208, 0, 0.5);
+    }
+}
+
+/* Apparition depuis le bas */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apparition simple */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Scan ligne horizontale */
+@keyframes scanline {
+    0%   { top: -5%; }
+    100% { top: 105%; }
+}
+
+/* Glitch horizontal */
+@keyframes glitch-x {
+    0%        { transform: translateX(0); }
+    20%       { transform: translateX(-4px); }
+    40%       { transform: translateX(4px); }
+    60%       { transform: translateX(-2px); }
+    80%       { transform: translateX(2px); }
+    100%      { transform: translateX(0); }
+}
+
+/* Glitch couleur */
+@keyframes glitch-color {
+    0%   { color: var(--green); }
+    25%  { color: var(--red); }
+    50%  { color: var(--yellow); }
+    75%  { color: #00eeff; }
+    100% { color: var(--green); }
+}
+
+/* Shake global */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    15%       { transform: translateX(-6px); }
+    30%       { transform: translateX(6px); }
+    45%       { transform: translateX(-4px); }
+    60%       { transform: translateX(4px); }
+    75%       { transform: translateX(-2px); }
+    90%       { transform: translateX(2px); }
+}
+
+/* Zoom in */
+@keyframes zoom-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Flash écran */
+@keyframes flash {
+    0%, 100% { background-color: transparent; }
+    50%       { background-color: rgba(0, 255, 65, 0.08); }
+}
+
+/* Défilement texte de fond */
+@keyframes matrix-scroll {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+/* Progress bar */
+@keyframes progress-fill {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+/* Rotation loader */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* =============================
+   CLASSES UTILITAIRES
+============================= */
+
+/* Lignes de sortie terminal */
+.output-line {
+    animation: fade-in-up 0.15s ease forwards;
+}
+
+/* Curseur clignotant */
+#command-input {
+    caret-color: var(--green);
+}
+
+/* Pseudo curseur bloc si besoin */
+.cursor-blink {
+    display: inline-block;
+    width: 9px;
+    height: 15px;
+    background-color: var(--green);
+    animation: blink 1s step-start infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* Lueur verte sur éléments importants */
+.glow-green {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.glow-red {
+    animation: glow-pulse-red 1.5s ease-in-out infinite;
+}
+
+.glow-yellow {
+    animation: glow-pulse-yellow 2s ease-in-out infinite;
+}
+
+/* Alerte danger */
+.danger-pulse {
+    color: var(--red);
+    animation: glow-pulse-red 0.8s ease-in-out infinite;
+}
+
+/* Glitch texte */
+.glitch {
+    animation: glitch-x 0.4s ease infinite,
+               glitch-color 0.4s ease infinite;
+}
+
+/* Shake élément */
+.shake {
+    animation: shake 0.5s ease;
+}
+
+/* Apparition douce */
+.fade-in {
+    animation: fade-in 0.4s ease forwards;
+}
+
+/* Zoom apparition */
+.zoom-in {
+    animation: zoom-in 0.3s ease forwards;
+}
+
+/* Flash fond terminal */
+.flash {
+    animation: flash 0.3s ease;
+}
+
+/* =============================
+   SCANLINES EFFET CRT
+============================= */
+#terminal-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px,
+        rgba(0, 0, 0, 0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Ligne de scan animée */
+#terminal-body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 255, 65, 0.06);
+    animation: scanline 6s linear infinite;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* =============================
+   PROGRESS BAR
+============================= */
+.progress-bar-wrapper {
+    width: 100%;
+    max-width: 400px;
+    height: 10px;
+    background-color: var(--gray);
+    border: 1px solid var(--green-dim);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 4px 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--green);
+    width: 0%;
+    animation: progress-fill 2s ease forwards;
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+}
+
+/* =============================
+   LOADER SPINNER
+============================= */
+.loader {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--green-dark);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* =============================
+   DOTS HEADER TERMINAL
+============================= */
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.red {
+    background-color: #ff5f57;
+    box-shadow: 0 0 4px rgba(255, 95, 87, 0.6);
+}
+
+.dot.yellow {
+    background-color: #febc2e;
+    box-shadow: 0 0 4px rgba(254, 188, 46, 0.6);
+}
+
+.dot.green {
+    background-color: #28c840;
+    box-shadow: 0 0 4px rgba(40, 200, 64, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* =============================
+   STATUS CONNECTE
+============================= */
+#status {
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* =============================
+   OS NAME TOP BAR
+============================= */
+#os-name {
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* =============================
+   TRANSITION ECRAN BOOT → MAIN
+============================= */
+#main-screen {
+    animation: fade-in 0.8s ease forwards;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+@media (max-width: 600px) {
+    #terminal-body::after {
+        display: none;
+    }
+
+    .glitch {
+        animation: glitch-color 0.4s ease infinite;
+    }
+}
+
